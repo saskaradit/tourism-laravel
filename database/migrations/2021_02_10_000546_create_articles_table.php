@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('title');
             $table->longText('description');
-            $table->string('image');
+            $table->string('image')->default('null');;
             $table->timestamps();
         });
     }

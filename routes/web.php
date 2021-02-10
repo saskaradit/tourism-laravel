@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@home');
+Route::get('/login','SessionsController@new');
+Route::post('/login','SessionsController@create');
+Route::get('/logout','SessionsController@destroy');
+Route::get('/register','UsersController@new');
+Route::post('/register','UsersController@create');
+Route::get('/users/{userId}/articles','UsersController@usersArticle');
 
 Route::resource('articles','ArticlesController');
+
