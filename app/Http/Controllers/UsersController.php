@@ -13,6 +13,16 @@ class UsersController extends Controller
         return view('users.create');
     }
 
+    public function index(){
+        $user =auth()->user();
+        return view('users.index')->with('user',$user);
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create(Request $request){
         $this->validate($request,[
             'name' => 'required',
@@ -35,6 +45,33 @@ class UsersController extends Controller
         );
         Auth::attempt($log_user);
         return redirect('/')->with('success', 'You are signed in');
+    }
+
+    public function edit($userId){
+        $user = User::find($userId);
+        // Check User or Admin
+        if(auth()->user()->id != $user->id ){
+            return redirect('/')->with('error', 'Unauthorized');
+        }
+        return view('users.edit')->with('user',$user);
+    }
+
+    public function update(Request $request){
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'password' => 'required',
+        ]);
+
+        $new_user = new User();
+        $new_user->name = $request->input('name');
+        $new_user->email = $request->input('email');
+        $new_user->phone = $request->input('phone');
+        $new_user->password = Hash::make($request->input('password'));
+
+        $new_user->save();
+        return redirect('/')->with('success', 'Profile Updated');
     }
 
     public function usersArticle($userId){

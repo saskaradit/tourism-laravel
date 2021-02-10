@@ -10,3 +10,12 @@ textarea::placeholder{
 input{
   color: #333;
 }
+.card-header{
+  background: transparent !important;
+}
+a{
+  text-decoration: none !important;
+}
+button:hover{
+  background-color: inherit;
+}
