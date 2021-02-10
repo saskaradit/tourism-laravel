@@ -64,7 +64,7 @@ class UsersController extends Controller
             'password' => 'required',
         ]);
 
-        $new_user = new User();
+        $new_user = Auth::user();
         $new_user->name = $request->input('name');
         $new_user->email = $request->input('email');
         $new_user->phone = $request->input('phone');

@@ -24,6 +24,7 @@ Route::get('/register','UsersController@new');
 Route::get('/profile','UsersController@index');
 Route::post('/register','UsersController@create');
 Route::get('/users/edit/{userId}','UsersController@edit');
+Route::post('/users/edit/{userId}','UsersController@update');
 
 // Articles
 Route::get('/users/{userId}/articles','UsersController@usersArticle');
