@@ -39,6 +39,9 @@
             <li><a href="/profile" class="dropdown-item">Profile</a></li>
             <li><a href="/logout" class="dropdown-item">Logout</a></li>
             <li><a href="/users/{{Auth::user()->id}}/articles" class="dropdown-item">My Articles</a></li>
+            @if(Auth::user()->role == 'Admin')
+              <li><a href="/admin" class="dropdown-item">Admin Page</a></li>
+            @endif
           </ul>
         </li>
       </ul>

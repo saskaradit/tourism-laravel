@@ -26,6 +26,11 @@ Route::post('/register','UsersController@create');
 Route::get('/users/edit/{userId}','UsersController@edit');
 Route::post('/users/edit/{userId}','UsersController@update');
 
+// Admin
+Route::get('/admin', 'UsersController@adminIndex');
+Route::get('/users', 'UsersController@show');
+Route::delete('/users/{userId}','UsersController@destroy');
+
 // Articles
 Route::get('/users/{userId}/articles','UsersController@usersArticle');
 

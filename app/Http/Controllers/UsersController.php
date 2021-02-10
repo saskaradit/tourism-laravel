@@ -18,6 +18,11 @@ class UsersController extends Controller
         return view('users.index')->with('user',$user);
     }
 
+    public function show(){
+        $users = User::orderBy('name','asc')->get();
+        return view('admin.show')->with('users',$users);
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -78,5 +83,20 @@ class UsersController extends Controller
         $user = User::find($userId);
         // dd($user->articles);
         return view('users.articles')->with('articles',$user->articles);
+    }
+
+    public function adminIndex(){
+        if(auth()->user()->role != 'Admin'){
+            return redirect('/articles')->with('error', 'Unauthorized');
+        }else{
+            return view('admin.index');
+        }
+    }
+
+    public function destroy($userId){
+        $user = User::find($userId);
+        dd($user);
+        $user->delete();
+        return redirect('/admin')->with('success', 'Deleted Users');
     }
 }

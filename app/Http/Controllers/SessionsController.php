@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionsController extends Controller
 {
-    // function register(){
-    //     return view('sessions.index');
-    // }
     function new(){
         return view('sessions.create');
     }
