@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        {{-- Favicon --}}
+        <link rel="icon" type="image/png" href="{{asset('storage/images/favicon.png')}}">
     </head>
     <body>
         @include('partials.adminnavbar')

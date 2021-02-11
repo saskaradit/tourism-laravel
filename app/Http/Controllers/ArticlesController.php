@@ -46,6 +46,7 @@ class ArticlesController extends Controller
             'image' => 'image|nullable|max:1999'
         ]);
 
+        $article = new Article();
         // handle file
         if($request->hasFile('image')){
             // Get filename with extension
@@ -58,18 +59,19 @@ class ArticlesController extends Controller
             $fileNameStore = $fileName.'_'.time().'.'.$ext;
             // add image
             $path = $request->file('image')->storeAs('public/images',$fileNameStore);
-
+            $article->image = $fileNameStore;
         }else{
             $fileName = 'null';
+            $article->image = $fileName;
         }
 
         // create article
-        $article = new Article();
+        
         $article->title = $request->input('title');
         $article->user_id = Auth::user()->id;
         $article->description = $request->input('desc');
         $article->category_id = $request->input('cat');
-        $article->image = $fileNameStore;
+        
         $article->save();
 
         return redirect('/articles')->with('success', 'Articles Created');

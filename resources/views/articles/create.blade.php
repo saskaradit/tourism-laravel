@@ -20,7 +20,7 @@
             <label for="formFile" class="form-label">Default file input example</label>
             <input class="form-control" type="file" id="formFile" name="image">
         </div>
-        <button type="submit" class="btn btn-dark">Register</button>
+        <button type="submit" class="btn btn-dark">Create</button>
     </form>
 @endsection
 

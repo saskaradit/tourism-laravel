@@ -9,13 +9,19 @@
         </div>
 
     @else
-        <h3>This Article has no image</h3>
+    <div class="card bg-light" style="width: fit-content;">
+        {{-- <img src="..." class="card-img-top" alt="..."> --}}
+        <div class="card-body">
+          <h5 class="card-title text-dark">No Image :(</h5>
+        </div>
+      </div>
     @endif
     <div>
         <p class="mt-3 fs-3">{{$article->description}}</p>
     </div>
     <p class="text-white fs-6">Written on {{$article->created_at}} by {{$article->user->name}}</p>
 
+    <a class="btn btn-teal" href="/articles">All Articles</a>
     @if(!Auth::guest())
         @if(Auth::user()->id == $article->user_id || Auth::user()->role == "Admin")
             <a href="/articles/{{$article->id}}/edit" class="btn btn-warning">Edit</a>
