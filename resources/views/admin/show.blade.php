@@ -6,7 +6,7 @@
         @foreach ($users as $user)
             @if($user->id == auth()->user()->id)
             @else
-                <div class="card py-3 mt-3">
+                <div class="card py-3 my-3">
                     <h4 class="card-header text-dark"> {{$user->name}} </h4>
                     <div class="card-body">
                         <p class="card-text text-dark">{{$user->email}}</p>
@@ -19,6 +19,7 @@
                 </div>
             @endif
         @endforeach
+        {{$users->links()}}
     @else
         <h3 class="text-white">There are no articles :(</h3>
     @endif

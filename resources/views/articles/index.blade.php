@@ -2,10 +2,13 @@
 
 @section('content')
     <h1 class="text-white">Articles</h1>   
+    @if(!Auth::guest())
+        <a class="btn btn-warning my-3" href="/articles/create">Create Article</a>
+    @endif
     @if(count($articles)> 0)
         @foreach ($articles as $article)
             <div class="card py-3 mt-3">
-                <h4 class="card-header"><a href="/articles/{{$article->id}}"> {{$article->title}} </a></h4>
+                <h4 class="card-header "><a href="/articles/{{$article->id}}"  class="article-header"> {{$article->title}} </a></h4>
                 <div class="card-body">
                     <p class="card-text text-dark">{{$article->description}}</p>
                     @if(!Auth::guest())

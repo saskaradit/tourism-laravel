@@ -19,3 +19,29 @@ a{
 button:hover{
   background-color: inherit;
 }
+.article-header{
+  color: #333;
+}
+.article-header:hover{
+  color: #ffc107;
+}
+.page-item.disabled{
+  display: none;
+  background-color: black;
+}
+.page-item.active .page-link{
+  background-color: #ffc107;
+  color: #333;
+}
+.page-link{
+  border: none;
+  color: #ffc107;
+  background-color: transparent;
+}
+.page-link:hover{
+  color: #333;
+}
+.page-link:hover{
+  border: none;
+  background-color: #ffc107;
+}

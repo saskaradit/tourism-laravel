@@ -19,13 +19,13 @@ class UsersController extends Controller
     }
 
     public function show(){
-        $users = User::orderBy('name','asc')->get();
+        $users = User::orderBy('name','asc')->paginate(5);
         return view('admin.show')->with('users',$users);
     }
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => ['index','new','create']]);
     }
 
     public function create(Request $request){
@@ -45,9 +45,15 @@ class UsersController extends Controller
         $new_user->save();
 
         $log_user = array(
-            'email' => $new_user->get('email'),
-            'password' => $new_user->get('password')
+            'email' => $new_user->email,
+            'password' => $request->get('password')
         );
+        // $log_user = array(
+        //     'email' => 'rad@rad.com',
+        //     'password' => 'rad'
+        // );
+        // dd($new_user->password);
+        // dd(Auth::attempt($log_user));
         Auth::attempt($log_user);
         return redirect('/')->with('success', 'You are signed in');
     }
@@ -95,7 +101,7 @@ class UsersController extends Controller
 
     public function destroy($userId){
         $user = User::find($userId);
-        dd($user);
+        // dd($user);
         $user->delete();
         return redirect('/admin')->with('success', 'Deleted Users');
     }
