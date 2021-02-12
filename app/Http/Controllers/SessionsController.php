@@ -20,6 +20,9 @@ class SessionsController extends Controller
             'password' => $request->get('password')
         );
         if(Auth::attempt($user_session)){
+            if(Auth::user()->role == "Admin"){
+                return redirect('/admin')->with('success', 'You are logged in');
+            }
             return redirect('/')->with('success', 'You are logged in');
         }else{
             return back()->with('error', 'Wrong Credentials');

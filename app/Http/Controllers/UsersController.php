@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
     public function new(){
+        if(isset(Auth::user()->email)){
+            return redirect('/');
+        }
         return view('users.create');
     }
 
@@ -23,8 +26,7 @@ class UsersController extends Controller
         return view('admin.show')->with('users',$users);
     }
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth',['except' => ['index','new','create']]);
     }
 
@@ -48,12 +50,6 @@ class UsersController extends Controller
             'email' => $new_user->email,
             'password' => $request->get('password')
         );
-        // $log_user = array(
-        //     'email' => 'rad@rad.com',
-        //     'password' => 'rad'
-        // );
-        // dd($new_user->password);
-        // dd(Auth::attempt($log_user));
         Auth::attempt($log_user);
         return redirect('/')->with('success', 'You are signed in');
     }

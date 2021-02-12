@@ -20,5 +20,20 @@
         @endif
         </p>
   </div>
+  <div class="row text-center d-flex">
+    @if(count($articles)> 0)
+      @foreach ($articles as $article)
+      <div class="col d-flex justify-content-center">
+        <div class="card m-3" style="width: 18rem;">
+          <div class="card-body">
+            <span class="badge bg-warning text-dark mt-3 mx-3" style="width: fit-content"><a href="/articles/category/{{$article->category->name}}" class="text-dark">{{$article->category->name}}</a></span>
+            <h4 class="card-header "><a href="/articles/{{$article->id}}"  class="article-header"> {{$article->title}} </a></h4>
+            <p class="card-text text-dark">{{$article->description}}</p>
+          </div>
+        </div>
+      </div>
+      @endforeach
+    @endif
+  </div>
 @endsection
 
