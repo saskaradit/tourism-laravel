@@ -28,7 +28,8 @@
           <div class="card-body">
             <span class="badge bg-warning text-dark mt-3 mx-3" style="width: fit-content"><a href="/articles/category/{{$article->category->name}}" class="text-dark">{{$article->category->name}}</a></span>
             <h4 class="card-header "><a href="/articles/{{$article->id}}"  class="article-header"> {{$article->title}} </a></h4>
-            <p class="card-text text-dark">{{$article->description}}</p>
+            {{-- <p class="card-text text-dark">{{$article->description}}</p> --}}
+            <p class="card-text text-dark">{{ strlen($article->description) > 50 ? substr($article->description,0,70).' ...' : $article->description }}</p>
           </div>
         </div>
       </div>
